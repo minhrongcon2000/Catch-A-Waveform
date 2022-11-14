@@ -2,7 +2,6 @@ from utils.utils import *
 import glob
 from params import Params
 from training import train
-from utils.plotters import *
 import time
 from datetime import datetime
 import argparse
@@ -153,18 +152,18 @@ if not params.run_mode == 'inpainting':
 else:
     audio_generator.inpaint()
 
-#################
-# Plotting Area #
-#################
-# Plot Signals
-if params.plot_signals:
-    os.mkdir(os.path.join(params.output_folder, 'figures'))
-    for real_signal, outputs, fs in zip(signals_list, output_signals, params.fs_list):
-        output_file(os.path.join(params.output_folder, 'figures', '%dHz' % fs))
-        plot_signal_time_freq(real_signal, outputs['reconstructed_signal'], outputs['fake_signal'], Fs=fs,
-                              labels=['Real Signal', 'Reconstructed Signal', 'Fake Signal'])
-# Plot losses
-if params.plot_losses:
-    if not os.path.exists(os.path.join(params.output_folder, 'figures')):
-        os.mkdir(os.path.join(params.output_folder, 'figures'))
-    plot_losses(params, loss_vectors)
+# #################
+# # Plotting Area #
+# #################
+# # Plot Signals
+# if params.plot_signals:
+#     os.mkdir(os.path.join(params.output_folder, 'figures'))
+#     for real_signal, outputs, fs in zip(signals_list, output_signals, params.fs_list):
+#         output_file(os.path.join(params.output_folder, 'figures', '%dHz' % fs))
+#         plot_signal_time_freq(real_signal, outputs['reconstructed_signal'], outputs['fake_signal'], Fs=fs,
+#                               labels=['Real Signal', 'Reconstructed Signal', 'Fake Signal'])
+# # Plot losses
+# if params.plot_losses:
+#     if not os.path.exists(os.path.join(params.output_folder, 'figures')):
+#         os.mkdir(os.path.join(params.output_folder, 'figures'))
+#     plot_losses(params, loss_vectors)

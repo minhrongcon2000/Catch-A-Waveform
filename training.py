@@ -2,7 +2,6 @@ from torch import optim
 from utils.utils import *
 from utils.mss_loss import multi_scale_spectrogram_loss
 from models import CAW
-from utils.plotters import *
 import os
 import random
 import time
