@@ -8,6 +8,7 @@ from datetime import datetime
 import argparse
 from generating import AudioGenerator
 import random
+import os
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -26,8 +27,11 @@ if __name__ == '__main__':
                         help='Start and end indices of hole (for inpainting)')
     parser.add_argument('--plot_losses', help='Save and plot GAN losses', default=False, action='store_true')
     parser.add_argument('--plot_signals', help='Plot signals', default=False, action='store_true')
+    parser.add_argument("--wandb_api_key", type=str, required=True)
 
     params_override = parser.parse_args()
+    
+os.environ["WANDB_API_KEY"] = params_override.wandb_api_key
 
 startTime = time.time()
 params = Params()

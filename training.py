@@ -6,6 +6,7 @@ from utils.plotters import *
 import os
 import random
 import time
+import wandb
 
 
 def train(params, signals_list):
@@ -278,6 +279,12 @@ def train_single_scale(params, signals_list, fs_list, generators_list, noise_amp
         if print_progress:
             print('[%d/%d] D(real): %.2f. D(fake): %.2f. rec_loss: %.4f. gp: %.4f ' % (
                 epoch_num, params.num_epochs, -err_real_D_val, err_fake_D_val, rec_loss_val, gradient_penalty_val))
+            wandb.log({
+                "D(real)": -err_real_D_val,
+                "D(fake)": err_fake_D_val,
+                "rec_loss": rec_loss_val,
+                "gp": gradient_penalty_val
+            })
 
         schedulerD.step()
         schedulerG.step()
