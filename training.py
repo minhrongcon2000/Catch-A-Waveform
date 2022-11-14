@@ -61,6 +61,7 @@ def train(params, signals_list):
 
 def train_single_scale(params, signals_list, fs_list, generators_list, noise_amp_list, energy_list,
                        reconstruction_noise_list):
+    wandb.init(project="genshin", name="caw")
     # Terminology: 0 is the higher scale (original signal, no downsampling). Higher scale means larger downsampling, e.g shorter signals
     n_scales = len(params.scales)
     current_scale = n_scales - len(generators_list) - 1
